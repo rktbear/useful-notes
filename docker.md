@@ -26,6 +26,12 @@ Docker runs as a user space process on linux only that leverages the linux kerne
 
 - `docker build -t <image_name> <path_to_docker_file>`
 
+### Listing all images on the machine
+
+- `docker images`
+
+
+
 ### Starting a container
 
 When a container starts it executes it will execute a command and then terminate.
@@ -41,6 +47,12 @@ Start a container and run `bash`:
 
 Start a container and run `echo "hello world!":
 - `docker run -n <container_name> <image_name> echo "hello world!"`
+
+Start a container and detach from it (leaving it running in the background):
+- `docker run -d -n <container_name> <image_name> <command>`
+
+Start a container and forward network ports to Host OS:
+- `docker run -P<port>:<port> -n <container_name> <image_name> `
 
 ### Run a command in a running container
 
