@@ -8,45 +8,54 @@ Consider that there are three components of a server: hardware, OS kernel, and O
 
 A virtual machine (software such as VirtualBox or hardware such as a Hypervisor) allows multiple instances of an OS (both kernel and user space) to run on a single piece of hardware.
 
-An application container allows multiple OS user space instances to run on a single OS kernel.
+An application container allows multiple OS user space instances to run on a single OS kernel. Filesystem and users/groups are segmented.
 
-Docker runs as a user space process on linux **only** that leverages the linux kernel LXC functionality to create and manage application containers.
+Docker runs as a user space process on linux only that leverages the linux kernel LXC functionality to create and manage application containers.
 
 ## Terminology
 
 **Host OS**: The OS user space instance that started the docker process and will start all other docker containers.
 
-**Image**:
+**Image**: All files that make up a container.
 
 **Contanier**: A OS user space instance created based on an image.
 
-## Commands
+## Cheat Sheet
 
-### Building an Image
+### Building an image
 
 - `docker build -t <image_name> <path_to_docker_file>`
 
-### Starting a Container
+### Starting a container
 
+When a container starts it executes it will execute a command and then terminate.
+
+Start a container without any commands (depends on `CMD` in Dockerfile):
 - `docker run -n <container_name> <image_name>`
+
+Start a container and execute a command:
 - `docker run -n <container_name> <image_name> <command>`
 
-### Run a command in a running Container
+Start a container and run `bash`:
+- `docker run -n <container_name> <image_name> bash`
+
+Start a container and run `echo "hello world!":
+- `docker run -n <container_name> <image_name> echo "hello world!"`
+
+### Run a command in a running container
 
 - `docker exec -t -i <container_name> <command>`
 
-### Show all running Container
+### Show all running containers
 
 - `docker ps`
 
-### Show logs from a Container
+### Show logs from a container
 
 - `docker logs <container_name>`
 
 ## Dockerfile
 
-```
-FROM ubuntu:14.04
-RUN apt-get install -y openssh-server
+A series of operations that are executed when building the image. `CMD` is only executed when the container starts.
 
-```
+Reference of all Dockerfile commands [https://docs.docker.com/reference/builder/](https://docs.docker.com/reference/builder/).
