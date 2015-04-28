@@ -16,7 +16,7 @@ Docker runs as a user space process on linux only that leverages the linux kerne
 
 **Host OS**: The OS user space instance that started the docker process and will start all other docker containers.
 
-**Image**: All files that make up a container.
+**Image**: All the files that make up the OS user space instance. It's important to remember almost everything in linux user space is represented by a file of some kind.
 
 **Contanier**: A OS user space instance created based on an image.
 
