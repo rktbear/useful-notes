@@ -30,11 +30,11 @@ Docker runs as a user space process on linux only that leverages the linux kerne
 
 - `docker images`
 
-
-
 ### Starting a container
 
-When a container starts it executes it will execute a command and then terminate.
+When a container starts it executes it will execute a command and then terminate. Even if a container is terminated it's not removed.
+
+Provide a name for the container otherwise it's difficult to reference with other commands.
 
 Start a container without any commands (depends on `CMD` in Dockerfile):
 - `docker run -n <container_name> <image_name>`
@@ -52,7 +52,12 @@ Start a container and detach from it (leaving it running in the background):
 - `docker run -d -n <container_name> <image_name> <command>`
 
 Start a container and forward network ports to Host OS:
-- `docker run -P<port>:<port> -n <container_name> <image_name> `
+- `docker run -d -P<port>:<port> -n <container_name> <image_name>`
+
+### Removing a container
+
+- `docker stop <container_name>` (only stopped containers can be removed!)
+- `docker rm <container_name>`
 
 ### Run a command in a running container
 
@@ -76,7 +81,9 @@ Reference of all Dockerfile commands [https://docs.docker.com/reference/builder/
 
 A stand-alone Java server that runs on port 8081.
 
-The application is a jar file that is packaged up in `app.tar.gz` and will be extracted into `/opt/app` by the `ADD` command.  
+The application is a jar file that is packaged up in `app.tar.gz` and will be extracted into `/opt/app` by the `ADD` command.
+
+The package `app.tar.gz` must be in the same location as the Dockerfile.
 
 ```
 FROM dockerfile/java:oracle-java7
