@@ -59,3 +59,19 @@ Start a container and run `echo "hello world!":
 A series of operations that are executed when building the image. `CMD` is only executed when the container starts.
 
 Reference of all Dockerfile commands [https://docs.docker.com/reference/builder/](https://docs.docker.com/reference/builder/).
+
+### Java Server
+
+A stand-alone Java server that runs on port 8081.
+
+The application is a jar file that is packaged up in `app.tar.gz` and will be extracted into `/opt/app` by the `ADD` command.  
+
+```
+FROM dockerfile/java:oracle-java7
+
+RUN rm -rf /opt/app
+RUN mkdir -p /opt/app
+ADD app.tar.gz /opt/app
+EXPOSE 8081
+CMD cd /usr/bin/java && /opt/app/app.jar
+```
