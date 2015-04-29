@@ -37,22 +37,22 @@ When a container starts it executes it will execute a command and then terminate
 Provide a name for the container otherwise it's difficult to reference with other commands.
 
 Start a container without any commands (depends on `CMD` in Dockerfile):
-- `docker run -n <container_name> <image_name>`
+- `docker run --name=<container_name> <image_name>`
 
 Start a container and execute a command:
-- `docker run -n <container_name> <image_name> <command>`
+- `docker run --name=<container_name> <image_name> <command>`
 
 Start a container and run `bash`:
-- `docker run -n <container_name> <image_name> bash`
+- `docker run --name=<container_name> <image_name> bash`
 
 Start a container and run `echo "hello world!":
-- `docker run -n <container_name> <image_name> echo "hello world!"`
+- `docker run --name=<container_name> <image_name> echo "hello world!"`
 
 Start a container and detach from it (leaving it running in the background):
-- `docker run -d -n <container_name> <image_name> <command>`
+- `docker run -d --name=<container_name> <image_name> <command>`
 
 Start a container and forward network ports to Host OS:
-- `docker run -d -P<port>:<port> -n <container_name> <image_name>`
+- `docker run -d -P<port>:<port> --name=<container_name> <image_name>`
 
 ### Removing a container
 
