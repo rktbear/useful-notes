@@ -43,7 +43,7 @@ Start a container and execute a command:
 - `docker run --name=<container_name> <image_name> <command>`
 
 Start a container and run `bash`:
-- `docker run --name=<container_name> <image_name> bash`
+- `docker run -t -i --name=<container_name> <image_name> bash`
 
 Start a container and run `echo "hello world!":
 - `docker run --name=<container_name> <image_name> echo "hello world!"`
@@ -52,7 +52,7 @@ Start a container and detach from it (leaving it running in the background):
 - `docker run -d --name=<container_name> <image_name> <command>`
 
 Start a container and forward network ports to Host OS:
-- `docker run -d -P<port>:<port> --name=<container_name> <image_name>`
+- `docker run -d -p <port>:<port> --name=<container_name> <image_name>`
 
 ### Removing a container
 
@@ -70,6 +70,14 @@ Start a container and forward network ports to Host OS:
 ### Show logs from a container
 
 - `docker logs <container_name>`
+
+### Fun and useless examples
+
+Start up Ubuntu and print out 'hello world':
+- `docker run ubuntu:14.04 echo "hello world"`
+
+Start up Ubuntu and run an echo server on port 1234 (Host OS can telnet back to 127.0.0.1:1234):
+- `docker run -p 1234:1234 ubuntu:14.04 nc -l 1234`
 
 ## Dockerfile
 
