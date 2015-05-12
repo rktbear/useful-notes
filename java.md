@@ -27,10 +27,10 @@ is suspended.
 
 | Command                  | Description                                              |
 |--------------------------|----------------------------------------------------------|
-| 'stop <class>:<num>'     | Put a breakpoint in a class at a particular line number. |
-| 'cont'                   | Continue running when execution is suspended.            |
-| 'step'                   | Step into code when suspended.                           |  
-| 'next'                   | Step over code when suspended.                           |  
-| 'list'                   | Show the source code when suspended.                     |
-| 'print <varName>'        | Print out a variable when suspended.                     |
-| 'where'                  | Show the callstack when suspended.                       |
+| `stop <class>:<num>`     | Put a breakpoint in a class at a particular line number. |
+| `cont`                   | Continue running when execution is suspended.            |
+| `step`                   | Step into code when suspended.                           |  
+| `next`                   | Step over code when suspended.                           |  
+| `list`                   | Show the source code when suspended.                     |
+| `print <varName>`        | Print out a variable when suspended.                     |
+| `where`                  | Show the callstack when suspended.                       |
