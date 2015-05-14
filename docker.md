@@ -10,7 +10,7 @@ A virtual machine (software such as VirtualBox or hardware such as a Hypervisor)
 
 An application container allows multiple OS user space instances to run on a single OS kernel. Filesystem and users/groups are segmented.
 
-Docker runs as a user space process on linux only that leverages the linux kernel LXC functionality to create and manage application containers.
+Docker runs as a user space process on __linux__ only that leverages the linux kernel LXC functionality to create and manage application containers.
 
 ## Terminology
 
@@ -20,13 +20,28 @@ Docker runs as a user space process on linux only that leverages the linux kerne
 
 **Contanier**: A OS user space instance created based on an image.
 
+## Images
+
+Docker images can come from two places:
+
+- Built from a Dockerfile on your local machine.
+- Downloaded from a central image repository called Docker Hub.
+
 ## Cheat Sheet
 
-### Building an image
+### Search for an image on the Docker Hub
+
+- `docker search <string>`
+
+### Fetching an image from the Docker Hub
+
+- `docker pull <image_name>`
+
+### Building an image from a Dockerfile
 
 - `docker build -t <image_name> <path_to_docker_file>`
 
-### Listing all images on the machine
+### Listing all built images on the machine
 
 - `docker images`
 
@@ -85,13 +100,15 @@ A series of operations that are executed when building the image. `CMD` is only 
 
 Reference of all Dockerfile commands [https://docs.docker.com/reference/builder/](https://docs.docker.com/reference/builder/).
 
-### Java Server
+## Example: Java Server
 
-A stand-alone Java server that runs on port 8081.
+A stand-alone Java server that runs on port 8081. Ths image is created from a Dockerfile.
 
 The application is a jar file that is packaged up in `app.tar.gz` and will be extracted into `/opt/app` by the `ADD` command.
 
 The package `app.tar.gz` must be in the same location as the Dockerfile.
+
+The image Dockerfile:
 
 ```
 FROM dockerfile/java:oracle-java7
@@ -100,5 +117,12 @@ RUN rm -rf /opt/app
 RUN mkdir -p /opt/app
 ADD app.tar.gz /opt/app
 EXPOSE 8081
-CMD cd /usr/bin/java && /opt/app/app.jar
+CMD /usr/bin/java -jar /opt/app/app.jar
 ```
+
+## Example: MySQL Server
+
+A MySQL server that is found on the Docker Hub. It runs on port 3306 with the username `root` and password `root`.
+
+- `docker pull mysql`
+- `docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=root`
